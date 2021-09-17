@@ -9,18 +9,17 @@
 import { db } from '@/plugins/firebase.js';
 
 export default {
-   fetch({store}) {
+   fetch({store}){
       return db.collection('tareas').get()
          .then(query => {
             const tareas = []
             query.forEach(element => {
                tareas.push(element.data())
             });
-
             return store.commit('setTareas', tareas)
          })
-         .catch(function(error) {
-            console.log("Error getting documents: ", error);
+         .catch(function(error){
+            console.log("Error obteniendo documentos: ", error);
          })
    }
 }
